@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Will You Be Mine? ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  height:100vh;
+  background: radial-gradient(circle at top, #ff6f91, #2b0a14 70%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Poppins', sans-serif;
+  overflow:hidden;
+  color:white;
+}
+
+.card{
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(14px);
+  border-radius:26px;
+  padding:40px 28px;
+  width:380px;
+  text-align:center;
+  box-shadow:0 25px 60px rgba(0,0,0,0.6);
+  animation:fadeUp 1.6s ease;
+}
+
+.ring{
+  font-size:4rem;
+  margin-bottom:16px;
+  animation:float 3s ease-in-out infinite;
+}
+
+h1{
+  font-family:'Playfair Display', serif;
+  font-size:2rem;
+  margin-bottom:18px;
+}
+
+.slide{
+  display:none;
+  font-size:1.05rem;
+  line-height:1.9;
+  opacity:0;
+  animation:fadeIn 1.2s ease forwards;
+}
+
+.slide.active{
+  display:block;
+}
+
+.controls{
+  margin-top:22px;
+}
+
+button{
+  background: rgba(255,255,255,0.22);
+  border:none;
+  color:white;
+  padding:10px 18px;
+  border-radius:22px;
+  margin:6px;
+  cursor:pointer;
+  font-size:0.95rem;
+  transition:0.3s;
+}
+
+button:hover{
+  background: rgba(255,255,255,0.4);
+  transform:scale(1.05);
+}
+
+.signature{
+  margin-top:18px;
+  font-style:italic;
+  opacity:0.9;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-14px);}
+}
+
+/* floating hearts */
+.heart{
+  position:absolute;
+  bottom:-30px;
+  font-size:18px;
+  animation:floatUp linear infinite;
+  opacity:0.8;
+}
+
+@keyframes floatUp{
+  to{
+    transform:translateY(-120vh);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="ring">💍</div>
+  <h1>Happy Propose Day</h1>
+
+  <!-- SLIDES -->
+  <div class="slide active">
+    Hello meri jaan 💖<br>
+    aaj sirf ek sawaal hai…
+  </div>
+
+  <div class="slide">
+    Tum jab hasti ho,<br>
+    duniya thodi aur khoobsurat lagti hai ✨
+  </div>
+
+  <div class="slide">
+    Door rehkar bhi,<br>
+    tum meri har khushi ka reason ho ❤️
+  </div>
+
+  <div class="slide">
+    Main har din tumhe choose karta hoon,<br>
+    aaj bhi, kal bhi, hamesha.
+  </div>
+
+  <div class="slide">
+    Toh aaj, Propose Day par…<br>
+    main dil se poochna chahta hoon 💌
+  </div>
+
+  <!-- FINAL SLIDE -->
+  <div class="slide">
+    <strong>Will you be mine?</strong><br>
+    sirf aaj nahi,<br>
+    balki hamesha ke liye 💍❤️<br><br>
+
+    <button onclick="sayYes()">Yes, of course ❤️</button>
+    <button onclick="sayYes()">Will you be mine 💖</button>
+  </div>
+
+  <div class="controls">
+    <button onclick="prevSlide()">← Prev</button>
+    <button onclick="nextSlide()">Next →</button>
+  </div>
+
+  <div class="signature">
+    — Yours, always
+  </div>
+</div>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide(index){
+  slides.forEach(s => s.classList.remove("active"));
+  slides[index].classList.add("active");
+}
+
+function nextSlide(){
+  current = (current + 1) % slides.length;
+  showSlide(current);
+}
+
+function prevSlide(){
+  current = (current - 1 + slides.length) % slides.length;
+  showSlide(current);
+}
+
+setInterval(nextSlide, 5000);
+
+/* YES BUTTON EFFECT */
+function sayYes(){
+  document.querySelector(".card").innerHTML = `
+    <div class="ring">💖</div>
+    <h1>She said YES 🥹❤️</h1>
+    <p style="font-size:1.1rem; line-height:1.9; margin-top:14px;">
+      My heart is yours now,<br>
+      today, tomorrow,<br>
+      and forever 💍✨
+    </p>
+    <div class="signature">— Yours, always</div>
+  `;
+
+  for(let i=0;i<60;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerText="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=4+Math.random()*4+"s";
+    heart.style.fontSize=16+Math.random()*20+"px";
+    document.body.appendChild(heart);
+  }
+}
+
+/* floating hearts background */
+for(let i=0;i<25;i++){
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerText="💗";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=6+Math.random()*5+"s";
+  heart.style.fontSize=14+Math.random()*18+"px";
+  document.body.appendChild(heart);
+}
+</script>
+
+</body>
+</html>
