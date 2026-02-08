@@ -33,7 +33,7 @@ body{
   width:380px;
   text-align:center;
   box-shadow:0 25px 60px rgba(0,0,0,0.6);
-  animation:fadeUp 1.6s ease;
+  animation:fadeUp 1.4s ease;
 }
 
 .ring{
@@ -53,7 +53,7 @@ h1{
   font-size:1.05rem;
   line-height:1.9;
   opacity:0;
-  animation:fadeIn 1.2s ease forwards;
+  animation:fadeIn 0.9s ease forwards;
 }
 
 .slide.active{
@@ -101,13 +101,13 @@ button:hover{
   50%{transform:translateY(-14px);}
 }
 
-/* floating hearts */
+/* floating hearts background */
 .heart{
   position:absolute;
   bottom:-30px;
   font-size:18px;
   animation:floatUp linear infinite;
-  opacity:0.8;
+  opacity:0.7;
 }
 
 @keyframes floatUp{
@@ -128,7 +128,7 @@ button:hover{
   <!-- SLIDES -->
   <div class="slide active">
     Hello meri jaan 💖<br>
-    aaj sirf ek sawaal hai…
+    aaj sirf ek baat kehni hai…
   </div>
 
   <div class="slide">
@@ -143,22 +143,18 @@ button:hover{
 
   <div class="slide">
     Main har din tumhe choose karta hoon,<br>
-    aaj bhi, kal bhi, hamesha.
+    bina kisi doubt ke.
   </div>
 
   <div class="slide">
-    Toh aaj, Propose Day par…<br>
-    main dil se poochna chahta hoon 💌
+    Isliye aaj, Propose Day par,<br>
+    dil se pooch raha hoon 💌
   </div>
 
   <!-- FINAL SLIDE -->
   <div class="slide">
-    <strong>Will you be mine?</strong><br>
-    sirf aaj nahi,<br>
-    balki hamesha ke liye 💍❤️<br><br>
-
+    <strong>Will you be mine… forever?</strong> 💍❤️<br><br>
     <button onclick="sayYes()">Yes, of course ❤️</button>
-    <button onclick="sayYes()">Will you be mine 💖</button>
   </div>
 
   <div class="controls">
@@ -181,16 +177,18 @@ function showSlide(index){
 }
 
 function nextSlide(){
-  current = (current + 1) % slides.length;
-  showSlide(current);
+  if(current < slides.length - 1){
+    current++;
+    showSlide(current);
+  }
 }
 
 function prevSlide(){
-  current = (current - 1 + slides.length) % slides.length;
-  showSlide(current);
+  if(current > 0){
+    current--;
+    showSlide(current);
+  }
 }
-
-setInterval(nextSlide, 5000);
 
 /* YES BUTTON EFFECT */
 function sayYes(){
@@ -198,9 +196,9 @@ function sayYes(){
     <div class="ring">💖</div>
     <h1>She said YES 🥹❤️</h1>
     <p style="font-size:1.1rem; line-height:1.9; margin-top:14px;">
-      My heart is yours now,<br>
-      today, tomorrow,<br>
-      and forever 💍✨
+      From this moment,<br>
+      my heart belongs to you 💍<br>
+      today, tomorrow, always ✨
     </p>
     <div class="signature">— Yours, always</div>
   `;
@@ -216,8 +214,8 @@ function sayYes(){
   }
 }
 
-/* floating hearts background */
-for(let i=0;i<25;i++){
+/* background hearts */
+for(let i=0;i<20;i++){
   let heart=document.createElement("div");
   heart.className="heart";
   heart.innerText="💗";
